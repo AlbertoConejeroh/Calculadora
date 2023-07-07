@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.iteriam.calculadora.dto.Calculadora;
 import com.iteriam.calculadora.dto.Calculadora.Operations;
+import com.iteriam.calculadora.exception.CustomException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,10 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CalculadoraServiceImp implements ICalculadoraService {
 
-
-
 	@Override
-	public BigDecimal calcula(BigDecimal primerNumero, BigDecimal segundoNumero, String operacion) {
+	public BigDecimal calcula(BigDecimal primerNumero, BigDecimal segundoNumero, String operacion)
+			throws CustomException {
 
 		Operations operation = Calculadora.getOperation(operacion);
 
@@ -26,11 +26,11 @@ public class CalculadoraServiceImp implements ICalculadoraService {
 		case RESTA:
 			return Calculadora.resta(primerNumero, segundoNumero);
 		default:
-			System.out.println("Operacion no soportada");
-			break;
+			log.error("Operation not supported");
+			throw new CustomException("CALC0003", "Operation not supported");
+
 		}
 
-		return null;
 	}
 
 }

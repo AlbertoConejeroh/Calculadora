@@ -1,6 +1,7 @@
 package com.iteriam.calculadora.controller;
 
 import java.math.BigDecimal;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.iteriam.calculadora.exception.CustomException;
 import com.iteriam.calculadora.service.ICalculadoraService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,19 +41,22 @@ public class CalculadoraController {
 					iCalculadoraService.calcula(new BigDecimal(primerNumero.replace(",", ".")),
 							new BigDecimal(segundoNumero.replace(",", ".")), operacion),
 					HttpStatus.OK);
-		} catch (Exception cExcep) {
+		} catch (CustomException cExcep) {
 
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error:"+cExcep.getLocalizedMessage(), cExcep);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"Error:" + cExcep.getCodError() + ". Description: " + cExcep.getError(), cExcep);
 		}
 
 	}
 
-	private void validaNumerosEntrada(String primerNumero, String segundoNumero) {
+	private void validaNumerosEntrada(String primerNumero, String segundoNumero) throws CustomException {
+		Pattern pattern = Pattern.compile("[0-9]+");
 		if ((primerNumero == null || primerNumero.isEmpty()) || (segundoNumero == null || segundoNumero.isEmpty())) {
-			System.out.println("Error dato vacio");
+			throw new CustomException("CALC0001", "Numbers cannot be empty");
 		}
-		if (!primerNumero.matches("[0-9]+") || !segundoNumero.matches("[0-9]+")) {
-			System.out.println("Error dato no numerico");
-		}
+
+		
+			boolean isDigit = (!pattern.matcher(primerNumero).find() || !pattern.matcher(segundoNumero).find());
+
 	}
 }
