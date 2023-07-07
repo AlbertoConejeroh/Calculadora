@@ -27,7 +27,7 @@ public class CalculadoraServiceImp implements ICalculadoraService {
 			return Calculadora.resta(primerNumero, segundoNumero);
 		default:
 			log.error("Operation not supported");
-			throw new CustomException("CALC0003", "Operation not supported");
+			throw new CustomException("CALC0003","Operation not supported");
 
 		}
 

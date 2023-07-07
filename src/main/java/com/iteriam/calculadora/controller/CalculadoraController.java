@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.iteriam.calculadora.exception.CustomException;
 import com.iteriam.calculadora.service.ICalculadoraService;
 
+import io.corp.calculator.TracerImpl;
 import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin(origins = "*")
@@ -27,22 +28,24 @@ public class CalculadoraController {
 	@Autowired
 	private ICalculadoraService iCalculadoraService;
 
+	private TracerImpl tracer = new TracerImpl();
+
 	/**
 	 * 
 	 * @param @return @throws
 	 */
 	@GetMapping("calcula")
-	public ResponseEntity<BigDecimal> getSimilarProducts(@RequestParam(name = "primerNumero") String primerNumero,
+	public ResponseEntity<BigDecimal> getResult(@RequestParam(name = "primerNumero") String primerNumero,
 			@RequestParam(name = "segundoNumero") String segundoNumero,
 			@RequestParam(name = "operacion") String operacion) {
 		try {
 			validaNumerosEntrada(primerNumero, segundoNumero);
-			return new ResponseEntity<BigDecimal>(
-					iCalculadoraService.calcula(new BigDecimal(primerNumero.replace(",", ".")),
-							new BigDecimal(segundoNumero.replace(",", ".")), operacion),
-					HttpStatus.OK);
+			BigDecimal result = iCalculadoraService.calcula(new BigDecimal(primerNumero.replace(",", ".")),
+					new BigDecimal(segundoNumero.replace(",", ".")), operacion);
+			tracer.trace(result);
+			return new ResponseEntity<BigDecimal>(result, HttpStatus.OK);
 		} catch (CustomException cExcep) {
-
+			tracer.trace(cExcep);
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 					"Error:" + cExcep.getCodError() + ". Description: " + cExcep.getError(), cExcep);
 		}
@@ -51,12 +54,14 @@ public class CalculadoraController {
 
 	private void validaNumerosEntrada(String primerNumero, String segundoNumero) throws CustomException {
 		Pattern pattern = Pattern.compile("[0-9]+");
-		if ((primerNumero == null || primerNumero.isEmpty()) || (segundoNumero == null || segundoNumero.isEmpty())) {
+		if ((primerNumero == null || primerNumero.isEmpty()) || (segundoNumero == null || segundoNumero.isEmpty())
+				) {
 			throw new CustomException("CALC0001", "Numbers cannot be empty");
 		}
-
 		
-			boolean isDigit = (!pattern.matcher(primerNumero).find() || !pattern.matcher(segundoNumero).find());
+		if(!pattern.matcher(primerNumero).find() || !pattern.matcher(segundoNumero).find()){
+			throw new CustomException("CALC0002", "Los parametros primerNumero y segundoNumero no deben contener caracteres alfabeticos");
+		}
 
 	}
 }

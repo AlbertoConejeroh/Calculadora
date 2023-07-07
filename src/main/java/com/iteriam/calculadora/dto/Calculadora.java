@@ -36,7 +36,13 @@ public class Calculadora {
 			}
 		}
 
-		throw new CustomException("CALC0003", "Operation not supported");
+		String operationsDisp = "";
+		for (int i = 0; i < Operations.valores.length; ++i) {
+			operationsDisp += Operations.valores[i].name() + " ";
+		}
+
+		throw new CustomException("CALC0003",
+				"Operation not supported. The available operations are: " + operationsDisp);
 
 	}
 
