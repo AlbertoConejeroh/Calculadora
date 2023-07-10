@@ -7,8 +7,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+
+/**
+ * The Class CalcErrorHandler.
+ */
 @ControllerAdvice
 public class CalcErrorHandler {
+	
+	/**
+	 * Method exception.
+	 *
+	 * @param request the request
+	 * @param e the e
+	 * @return the response entity
+	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<CalcError> methodException(HttpServletRequest request, Exception e) {
 
