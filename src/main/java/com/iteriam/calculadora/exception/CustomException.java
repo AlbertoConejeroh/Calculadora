@@ -11,31 +11,10 @@ import lombok.NoArgsConstructor;
  * @author Alberto Conejero Hernandez
  */
 
-/**
- * To string.
- *
- * @return the java.lang. string
- */
+
 @Data
-
-/**
- * To string.
- *
- * @return the java.lang. string
- */
 @Builder
-
-/**
- * Instantiates a new custom exception.
- */
 @NoArgsConstructor
-
-/**
- * Instantiates a new custom exception.
- *
- * @param codError the cod error
- * @param error the error
- */
 @AllArgsConstructor
 public class CustomException extends Exception {
 

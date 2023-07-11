@@ -1,7 +1,7 @@
 package com.iteriam.calculadora.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.iteriam.calculadora.dto.ResultDTO;
 import com.iteriam.calculadora.exception.CustomException;
-import com.iteriam.calculadora.service.ICalculatorService;
+import com.iteriam.calculadora.service.CalculatorService;
 
 import io.corp.calculator.TracerImpl;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * The Class CalculatorController.
@@ -29,55 +31,42 @@ public class CalculatorController {
 
 	/** The i calculator service. */
 	@Autowired
-	private ICalculatorService iCalculatorService;
+	private CalculatorService calculatoService;
 
-	/** The tracer. */
-	private TracerImpl tracer = new TracerImpl();
+	@Autowired
+	private TracerImpl tracer;
 
-	
 	/**
 	 * Gets the result.
 	 *
-	 * @param firstNumber the first number
+	 * @param firstNumber  the first number
 	 * @param secondNumber the second number
-	 * @param operation the operation
+	 * @param operation    the operation
 	 * @return the result
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws ClassNotFoundException
 	 */
 	@GetMapping("calculate")
-	public ResponseEntity<BigDecimal> getResult(@RequestParam(name = "firstNumber") String firstNumber,
-			@RequestParam(name = "secondNumber") String secondNumber,
-			@RequestParam(name = "operation") String operation) {
+	public ResponseEntity<ResultDTO> getResult(@RequestParam(name = "firstNumber") @NotNull BigDecimal firstNumber,
+			@RequestParam(name = "secondNumber") @NotNull BigDecimal secondNumber,
+			@RequestParam(name = "operation") @NotBlank @NotNull String operation)
+			throws CustomException {
 		try {
-			validateNumbers(firstNumber, secondNumber);
-			BigDecimal result = iCalculatorService.calculate(new BigDecimal(firstNumber.replace(",", ".")),
-					new BigDecimal(secondNumber.replace(",", ".")), operation);
-			tracer.trace(result);
-			return new ResponseEntity<BigDecimal>(result, HttpStatus.OK);
+
+			ResultDTO result = calculatoService.calculate(firstNumber, secondNumber, operation);
+			tracer.trace(result.getResult());
+			return new ResponseEntity<>(result, HttpStatus.OK);
 		} catch (CustomException cExcep) {
-			tracer.trace(cExcep);
+		
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 					"Error:" + cExcep.getCodError() + ". Description: " + cExcep.getError(), cExcep);
 		}
 
 	}
 
-	/**
-	 * Validate numbers.
-	 *
-	 * @param firstNumber the first number
-	 * @param secondNumber the second number
-	 * @throws CustomException the custom exception
-	 */
-	private void validateNumbers(String firstNumber, String secondNumber) throws CustomException {
-		Pattern pattern = Pattern.compile("[0-9]+");
-		if ((firstNumber == null || firstNumber.isEmpty()) || (secondNumber == null || secondNumber.isEmpty())) {
-			throw new CustomException("CALC0001", "Numbers cannot be empty");
-		}
-
-		if (!pattern.matcher(firstNumber).find() || !pattern.matcher(secondNumber).find()) {
-			throw new CustomException("CALC0002",
-					"The parameters firstNumber and secondNumber must not contain alphabetic characters");
-		}
-
-	}
 }

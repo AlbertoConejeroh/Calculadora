@@ -1,18 +1,11 @@
-package com.iteriam.calculadora.service;
+package com.iteriam.calculadora.component;
 
 import java.math.BigDecimal;
 
 import com.iteriam.calculadora.exception.CustomException;
 
 
-
-
-
-/**
- * The Interface ICalculatorService.
- */
-public interface ICalculatorService {
-
+public interface IOperationsComponent {
 	/**
 	 * Calculate.
 	 *
@@ -22,6 +15,6 @@ public interface ICalculatorService {
 	 * @return the big decimal
 	 * @throws CustomException the custom exception
 	 */
-	public BigDecimal calculate(BigDecimal firstNumber, BigDecimal secondNumber, String operation) throws CustomException;
+	public BigDecimal calculate(BigDecimal firstNumber, BigDecimal secondNumber) throws CustomException;
 	
 }
