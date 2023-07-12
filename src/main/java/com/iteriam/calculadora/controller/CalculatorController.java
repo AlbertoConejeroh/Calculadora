@@ -26,7 +26,7 @@ import jakarta.validation.constraints.NotNull;
  */
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "/calculator/")
+@RequestMapping(value = "/rest/calculator/")
 public class CalculatorController {
 
 	/** The i calculator service. */
@@ -43,29 +43,15 @@ public class CalculatorController {
 	 * @param secondNumber the second number
 	 * @param operation    the operation
 	 * @return the result
-	 * @throws InvocationTargetException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 * @throws ClassNotFoundException
 	 */
 	@GetMapping("calculate")
 	public ResponseEntity<ResultDTO> getResult(@RequestParam(name = "firstNumber") @NotNull BigDecimal firstNumber,
 			@RequestParam(name = "secondNumber") @NotNull BigDecimal secondNumber,
-			@RequestParam(name = "operation") @NotBlank @NotNull String operation)
-			throws CustomException {
-		try {
+			@RequestParam(name = "operation") @NotBlank @NotNull String operation) {
 
-			ResultDTO result = calculatoService.calculate(firstNumber, secondNumber, operation);
-			tracer.trace(result.getResult());
-			return new ResponseEntity<>(result, HttpStatus.OK);
-		} catch (CustomException cExcep) {
-		
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Error:" + cExcep.getCodError() + ". Description: " + cExcep.getError(), cExcep);
-		}
+		ResultDTO result = calculatoService.calculate(firstNumber, secondNumber, operation);
+		tracer.trace(result.getResult());
+		return new ResponseEntity<>(result, HttpStatus.OK);
 
 	}
 

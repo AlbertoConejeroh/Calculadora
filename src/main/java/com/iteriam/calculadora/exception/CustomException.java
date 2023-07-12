@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomException extends Exception {
+public class CustomException extends RuntimeException {
 
 	/**
 	 * Instantiates a new custom exception.

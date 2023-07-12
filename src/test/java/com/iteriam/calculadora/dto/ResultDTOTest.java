@@ -25,6 +25,9 @@ public class ResultDTOTest {
 		resultDTO.setResult(new BigDecimal("2"));
 		assertTrue(resultDTO.getResult().compareTo(new BigDecimal("2")) == 0);
 		resultDTO.toString();
-
+		resultDTO.equals(null);
+		resultDTO.equals(resultDTO);
+		ResultDTO resultDTOTwo = new ResultDTO(new BigDecimal("2"));
+		resultDTO.equals(resultDTOTwo);
 	}
 }
