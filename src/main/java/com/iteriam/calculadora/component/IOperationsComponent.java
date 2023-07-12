@@ -15,6 +15,6 @@ public interface IOperationsComponent {
 	 * @return the big decimal
 	 * @throws CustomException the custom exception
 	 */
-	public BigDecimal calculate(BigDecimal firstNumber, BigDecimal secondNumber) throws CustomException;
+	public BigDecimal calculate(BigDecimal firstNumber, BigDecimal secondNumber) ;
 	
 }

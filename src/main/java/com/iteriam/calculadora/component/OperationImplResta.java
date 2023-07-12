@@ -4,14 +4,23 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 
-import com.iteriam.calculadora.exception.CustomException;
 
+/**
+ * The Class OperationImplResta.
+ */
 @Component
 public class OperationImplResta implements IOperationsComponent {
 
+	/**
+	 * Calculate.
+	 *
+	 * @param firstNumber the first number
+	 * @param secondNumber the second number
+	 * @return the big decimal
+	 */
 	@Override
 	public BigDecimal calculate(BigDecimal firstNumber, BigDecimal secondNumber)
-			throws CustomException {
+			 {
 		
 		return firstNumber.subtract(secondNumber);
 	}

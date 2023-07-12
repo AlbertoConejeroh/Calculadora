@@ -1,6 +1,5 @@
 package com.iteriam.calculadora.service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ public class CalculatorService {
 	 * @param secondNumber the second number
 	 * @param operation    the operation
 	 * @return the ResultDTO
-	 * @throws CustomException the custom exception
 	 */
 	public ResultDTO calculate(BigDecimal firstNumber, BigDecimal secondNumber, String operation) {
 
