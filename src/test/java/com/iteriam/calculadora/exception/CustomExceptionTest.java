@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 
 
-public class CustomExceptionTest {
+ class CustomExceptionTest {
 	
 	@InjectMocks
 	 CustomException customExceptionMock;

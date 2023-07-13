@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.iteriam.calculadora.exception.CustomException;
 
-public class ResultDTOTest {
+ class ResultDTOTest {
 
 	@BeforeEach
 	void setUp() throws Exception {

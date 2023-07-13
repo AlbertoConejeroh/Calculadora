@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations;
 import com.iteriam.calculadora.dto.ResultDTO;
 import com.iteriam.calculadora.exception.CustomException;
 
-public class CalculatorServiceImplTest {
+ class CalculatorServiceImplTest {
 
 	@InjectMocks
 	 CalculatorService calculatorServiceImp;

@@ -8,7 +8,7 @@ import org.mockito.MockitoAnnotations;
 
 
 
-public class CalcErrorTest {
+ class CalcErrorTest {
 
 	@BeforeEach
 	 void setUp() throws Exception {

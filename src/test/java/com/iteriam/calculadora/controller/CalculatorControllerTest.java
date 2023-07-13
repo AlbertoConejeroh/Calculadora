@@ -17,7 +17,7 @@ import com.iteriam.calculadora.service.CalculatorService;
 
 import io.corp.calculator.TracerImpl;
 
-public class CalculatorControllerTest {
+ class CalculatorControllerTest {
 
 	@Mock
 	CalculatorService calcService;

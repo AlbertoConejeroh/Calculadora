@@ -10,7 +10,7 @@ Ejecutar el jar que se ha generado en la carpeta `/target` con el comando
 
 El puerto configurado es 8081, se puede cambiar antes de generar el jar en el `application.properties`
 
-### Ejecucion y pruebas
+### Ejecución y pruebas
 
 Para probar la calculadora, puede hacerse mendiante el Swagger
 
@@ -23,7 +23,7 @@ EJEMPLOS:
 firstParam 1; secondParam  1; operation suma; --> Value calculate: 2
 firstParam 2; secondParam  1; operation resta; --> Value calculate: 1
 
-Si la operación introducida no puede está en la lista muestra el sigueinte error 
+Si la operación introducida no está entre las operaciones válidas, se muestra el siguiente error
 {
   "statusCode": 400,
   "message": "CALC0001 Error unavalible operation",
@@ -33,7 +33,7 @@ Si la operación introducida no puede está en la lista muestra el sigueinte err
 ### Añadir nueva fucionalidad
 
 Para añadir nuevas funcionalidades bastará con crear un componente nuevo con el nombre OperationImpl`Nuevafuncionalidad`  que implemente la clase IOperationsComponent
-y implementar el metodo calculate con la funcion que queramos realizar,  tenemos que tener encuenta que el literal que entra en el campo operation debe ser nuestro `Nuevafuncionalidad`
+e implementar el método calculate con la función que queramos realizar, debemos tener en cuenta que el literal que entra en el campo operation debe ser nuestro `Nuevafuncionalidad`
 
 
 
