@@ -39,34 +39,19 @@
           <mxGeometry y="90" width="480" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gXYHgQvByhNv6nCS-I8w-16" value="Cobrar" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="20" y="310" width="80" height="80" as="geometry" />
+          <mxGeometry x="20" y="380" width="100" height="100" as="geometry" />
         </mxCell>
         <mxCell id="gXYHgQvByhNv6nCS-I8w-17" value="Factura-ticket" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="200" y="310" width="80" height="80" as="geometry" />
+          <mxGeometry x="270" y="380" width="100" height="100" as="geometry" />
         </mxCell>
         <mxCell id="gXYHgQvByhNv6nCS-I8w-18" value="Recibo&lt;div&gt;Preobro&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="110" y="310" width="80" height="80" as="geometry" />
+          <mxGeometry x="150" y="380" width="100" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-19" value="EditarLista" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="290" y="310" width="80" height="80" as="geometry" />
+        <mxCell id="gXYHgQvByhNv6nCS-I8w-19" value="Editar Lista Pedidos" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="390" y="380" width="100" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-20" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="380" y="310" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-21" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="20" y="400" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-22" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="110" y="400" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-23" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="290" y="400" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-24" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="200" y="400" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="gXYHgQvByhNv6nCS-I8w-25" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="380" y="400" width="80" height="80" as="geometry" />
+        <mxCell id="gXYHgQvByhNv6nCS-I8w-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="gXYHgQvByhNv6nCS-I8w-7" target="gXYHgQvByhNv6nCS-I8w-7">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
